@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr.service';
 declare var $: any
 
 @Component({
@@ -8,7 +10,12 @@ declare var $: any
 })
 export class AppComponent {
   title = 'EcommerceClient';
+ 
+  constructor(private toastrService: CustomToastrService) {
+    toastrService.message('Welcome our Ecommerce Website', 'Have fun!',
+    {messageType: ToastrMessageType.Info,
+      position: ToastrPosition.BottomCenter});
+
+  }
 }
-$(document).ready(()=>{
-  alert("sa")
-})
+

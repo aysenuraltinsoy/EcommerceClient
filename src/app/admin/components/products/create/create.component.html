@@ -1,0 +1,33 @@
+<mat-form-field appearance="fill" class="product-create">
+  <mat-label>Name</mat-label>
+  <input matInput #txtName />
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="product-create">
+  <mat-label>Description</mat-label>
+  <input matInput #txtDescription />
+</mat-form-field>
+<mat-form-field appearance="fill" class="product-create">
+  <mat-label>Price</mat-label>
+  <input matInput type="number" min="0" value="0" #txtPrice />
+</mat-form-field>
+<mat-form-field appearance="fill" class="product-create">
+  <mat-label>Stock</mat-label>
+  <input matInput type="number" min="0" value="0" #txtStock />
+</mat-form-field>
+
+<button
+  mat-button
+  color="accent"
+  class="btn"
+  (click)="create(txtName, txtDescription, txtPrice, txtStock)"
+>
+  Create Product
+</button>
+<!-- <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <mat-select>
+      <mat-option value="one">First option</mat-option>
+      <mat-option value="two">Second option</mat-option>
+    </mat-select>
+  </mat-form-field> -->
