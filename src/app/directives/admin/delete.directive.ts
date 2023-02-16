@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { SpinnerType } from 'src/app/base/base.component';
 import { DeleteDialogComponent, DeleteState } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
 import { HttpClientService } from 'src/app/services/common/http-client.service';
@@ -12,7 +11,7 @@ declare var $:any;
 })
 export class DeleteDirective {
 
-  constructor(private element:ElementRef, private _renderer:Renderer2, private httpClientService:HttpClientService,public dialog: MatDialog,private alertifyService:AlertifyService,private spinner:SpinnerType) 
+  constructor(private element:ElementRef, private _renderer:Renderer2, private httpClientService:HttpClientService,public dialog: MatDialog,private alertifyService:AlertifyService) 
   { 
       const img=_renderer.createElement("img");
       img.setAttribute("src","../../../../../assets/delete.png");
