@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <form [formGroup]="frm" (ngSubmit)="onSubmit(frm.value)">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          placeholder="Username"
+          formControlName="username"
+          [ngClass]="{ 'is-invalid': submitted && component.username.errors }"
+        />
+        <small
+          class="form-text"
+          style="color: red"
+          *ngIf="submitted && component.username.errors?.required"
+        >
+          Username is required.
+        </small>
+        <small
+          class="form-text"
+          style="color: red"
+          *ngIf="
+            submitted &&
+            (component.username.errors?.maxlength ||
+              component.username.errors?.minlength)
+          "
+        >
+          The minimum number of characters should be 5 and the maximum number of
+          characters should be 25.
+        </small>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Email"
+          formControlName="email"
+          [ngClass]="{ 'is-invalid': submitted && component.email.errors }"
+        />
+        <div
+          id="emailHelp"
+          class="form-text"
+          style="color: red"
+          *ngIf="submitted && component.email.errors?.required"
+        >
+          Email is required.
+        </div>
+        <div
+          id="emailHelp"
+          class="form-text"
+          style="color: red"
+          *ngIf="submitted && component.email.errors?.email"
+        >
+          Please enter a valid email address.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          formControlName="password"
+          [ngClass]="{ 'is-invalid': submitted && component.password.errors }"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password Again</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password Again"
+          formControlName="passwordAgain"
+          [ngClass]="{
+            'is-invalid': submitted && component.passwordAgain.errors
+          }"
+        />
+      </div>
+      <label class="form-label">Country</label>
+      <select class="form-select" formControlName="country">
+        <option value="" selected disabled>Select a country</option>
+        <option *ngFor="let country of countries" [value]="country">
+          {{ country }}
+        </option>
+      </select>
+      <br />
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+  </div>
+</div>
