@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { AuthService } from 'src/app/services/common/auth.service';
+import { UserAuthService } from 'src/app/services/common/models/user-auth.service';
 import { UserService } from 'src/app/services/common/models/user.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   /**
    *
    */
-  constructor(private userService:UserService,spinner:NgxSpinnerService, private authService: AuthService, private activatedRoute:ActivatedRoute, private router:Router) {
+  constructor(private userAuthService:UserAuthService,spinner:NgxSpinnerService, private authService: AuthService, private activatedRoute:ActivatedRoute, private router:Router) {
     super(spinner)
   }
   
@@ -25,7 +26,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
 
   login(usernameOrEmail:string ,password:string ){
     this.showSpinner(SpinnerType.SquareJellyBox);
-    this.userService.login(usernameOrEmail,password,()=>{
+    this.userAuthService.login(usernameOrEmail,password,()=>{
       this.authService.identityCheck();
       this.activatedRoute.queryParams.subscribe(params =>{
         const returnUrl:string=params["returnUrl"];
