@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { MessageType, Position } from 'src/app/services/admin/alertify.service';
+import { AuthService, _isAuthenticated } from 'src/app/services/common/auth.service';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from 'src/app/services/ui/custom-toastr.service';
 
 @Injectable({
@@ -21,19 +22,19 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
 
-      const token: string= localStorage.getItem("accessToken");
+      // const token: string= localStorage.getItem("accessToken");
 
-      //const decodeToken=this.jwtHelper.decodeToken(token);
-      //const expirationDate: Date=this.jwtHelper.getTokenExpirationDate(token);
-      let expired: boolean;
-      try {
-        expired=this.jwtHelper.isTokenExpired(token);
-      } catch (error) {
-        expired=true;
-      }
+      // //const decodeToken=this.jwtHelper.decodeToken(token);
+      // //const expirationDate: Date=this.jwtHelper.getTokenExpirationDate(token);
+      // let expired: boolean;
+      // try {
+      //   expired=this.jwtHelper.isTokenExpired(token);
+      // } catch (error) {
+      //   expired=true;
+      // }
 
          // state.url gitmek istenen url, route geldiğim url, login olduğunda otomatik state url e yönlendirilecek
-      if (!token || expired) {
+      if (!_isAuthenticated) {
         this.router.navigate(["login"], {queryParams: {returnUrl:state.url}});
         this.toastrService.message("You must log in.","Unauthorized Access!",{
           messageType:ToastrMessageType.Warning,

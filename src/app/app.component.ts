@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from './services/common/auth.service';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr.service';
 declare var $: any
 
@@ -9,13 +10,23 @@ declare var $: any
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'EcommerceClient';
+  
  
-  constructor(private toastrService: CustomToastrService) {
-    toastrService.message('Welcome our Ecommerce Website', 'Have fun!',
+  constructor(private toastrService: CustomToastrService,public authService:AuthService) {
+    toastrService.message('Welcome my Ecommerce Website, Ayşenur Altınsoy', 'Have fun!',
     {messageType: ToastrMessageType.Info,
       position: ToastrPosition.BottomCenter});
+      authService.identityCheck();
 
+  }
+
+  signOut() {
+    localStorage.removeItem("accessToken");
+    this.authService.identityCheck();
+    this.toastrService.message("Logout successful.","Signed out",{
+      messageType:ToastrMessageType.Info,
+      position:ToastrPosition.TopCenter
+    })
   }
 }
 
