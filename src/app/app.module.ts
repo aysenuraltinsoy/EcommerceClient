@@ -8,8 +8,9 @@ import { UiModule } from './ui/ui.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BaseComponent } from './base/base.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
+import { HttpErrorHandlerInterceptorService } from './services/common/http-error-handler-interceptor.service';
 
 
 
@@ -32,11 +33,13 @@ import { JwtModule } from '@auth0/angular-jwt';
         tokenGetter: ()=>localStorage.getItem("accessToken"),
         allowedDomains:["localhost:7189"]
       }
-    })
+    }),
   ],
   providers: [
-    {provide:"baseUrl", useValue:"https://localhost:7189/api",multi:true}
+    {provide:"baseUrl", useValue:"https://localhost:7189/api",multi:true},
+    {provide:HTTP_INTERCEPTORS ,useClass: HttpErrorHandlerInterceptorService, multi: true}
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
