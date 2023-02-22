@@ -30,13 +30,13 @@ dataSource : MatTableDataSource<List_Product>= null;
     var p=this.paginator;
 
     this.showSpinner(SpinnerType.BallCircus);
-    const allProducts: {totalCount:number; products: List_Product[]}= await this.productService.read(this.paginator? this.paginator.pageIndex:0,this.paginator? this.paginator.pageSize:5 ,()=>this.hideSpinner(SpinnerType.BallCircus),errorMessage => this.alertifyService.message(errorMessage,{
+    const allProducts: {totalPageCount:number; products: List_Product[]}= await this.productService.read(this.paginator? this.paginator.pageIndex:0,this.paginator? this.paginator.pageSize:5 ,()=>this.hideSpinner(SpinnerType.BallCircus),errorMessage => this.alertifyService.message(errorMessage,{
       dismissOthers:true,
       messageType:MessageType.Error,
       position:Position.TopCenter
     }))
     this.dataSource=new MatTableDataSource<List_Product>(allProducts.products);
-    this.paginator.length=allProducts.totalCount;
+    this.paginator.length=allProducts.totalPageCount;
     
   }
 
