@@ -16,7 +16,9 @@
         <br />
         {{ product.description }}
       </p>
-      <a href="#" class="btn btn-outline-info">Add to Basket</a>
+      <a class="btn btn-outline-info" (click)="addToBasket(product)"
+        >Add to Basket</a
+      >
     </div>
   </div>
 </div>

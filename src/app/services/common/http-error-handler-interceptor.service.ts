@@ -22,11 +22,26 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
     return next.handle(req).pipe(catchError(error => {
       switch(error.status){
         case HttpStatusCode.Unauthorized :
-          this.toastrService.message("You are not authorized to perform this action.","Unauthorized request!",{
-            messageType:ToastrMessageType.Warning,
-            position:ToastrPosition.TopFullWidth
-          });
-          this.userAuthService.refreshTokenLogin(localStorage.getItem("refreshToken")).then(data=>{
+
+          
+
+         
+          this.userAuthService.refreshTokenLogin(localStorage.getItem("refreshToken"), (state) => {
+            if (!state) {
+              const url=  this.router.url;
+              if (url=="/products") 
+                this.toastrService.message("You must be logged in to add products to the cart.","Please Login",{
+                  messageType:ToastrMessageType.Warning,
+                  position:ToastrPosition.TopFullWidth
+                });
+              
+              else
+                this.toastrService.message("You are not authorized to perform this action.","Unauthorized request!",{
+                  messageType:ToastrMessageType.Warning,
+                  position:ToastrPosition.TopFullWidth
+                });
+            }
+          }).then(data=>{
             
           });
           break;
