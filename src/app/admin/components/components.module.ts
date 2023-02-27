@@ -10,6 +10,8 @@ import { CustomerModule } from './customer/customer.module';
 import { ShoppingCartModule } from './shopping-cart/shopping-cart.module';
 import { CategoryModule } from './category/category.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { AuthorizeMenuModule } from './authorize-menu/authorize-menu.module';
+import { RoleModule } from './role/role.module';
 
 
 
@@ -25,7 +27,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
     CustomerModule,
     ShoppingCartModule,
     CategoryModule,
-    DashboardModule
+    DashboardModule,
+    AuthorizeMenuModule,
+    RoleModule
   ]
 })
 export class ComponentsModule { }

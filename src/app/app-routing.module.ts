@@ -14,6 +14,8 @@ const routes: Routes = [
     { path: "orders", loadChildren: () => import("./admin/components/order/order.module").then(module => module.OrderModule), canActivate: [AuthGuard] },
     {path:"shoppingcarts",loadChildren: ()=>import("./admin/components/shopping-cart/shopping-cart.module").then(module =>module.ShoppingCartModule),canActivate:[AuthGuard]},
     {path:"dashboard",loadChildren: ()=>import("./admin/components/shopping-cart/shopping-cart.module").then(module =>module.ShoppingCartModule),canActivate:[AuthGuard]},
+    {path:"authorize-menu",loadChildren: ()=>import("./admin/components/authorize-menu/authorize-menu.module").then(module =>module.AuthorizeMenuModule),canActivate:[AuthGuard]},
+    {path:"roles",loadChildren: ()=>import("./admin/components/role/role.module").then(module =>module.RoleModule),canActivate:[AuthGuard]},
     ],canActivate:[AuthGuard]
   },
   {path:"",component:HomeComponent},
