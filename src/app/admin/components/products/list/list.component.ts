@@ -40,11 +40,6 @@ dataSource : MatTableDataSource<List_Product>= null;
     
   }
 
-  // delete(id, event){
-    
-  //   const img:HTMLImageElement=event.srcElement;
-  //   $(img.parentElement.parentElement).fadeOut(2000);
-  // }
 
   async pageChanged() {
     await this.getProducts();

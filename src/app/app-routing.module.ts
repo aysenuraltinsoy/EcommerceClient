@@ -11,6 +11,7 @@ const routes: Routes = [
     {path:"customers",loadChildren: ()=>import("./admin/components/customer/customer.module").then(module =>module.CustomerModule),canActivate:[AuthGuard]},
     {path:"products",loadChildren: ()=>import("./admin/components/products/products.module").then(module =>module.ProductsModule),canActivate:[AuthGuard]},
     {path:"categories",loadChildren: ()=>import("./admin/components/category/category.module").then(module =>module.CategoryModule),canActivate:[AuthGuard]},
+    { path: "orders", loadChildren: () => import("./admin/components/order/order.module").then(module => module.OrderModule), canActivate: [AuthGuard] },
     {path:"shoppingcarts",loadChildren: ()=>import("./admin/components/shopping-cart/shopping-cart.module").then(module =>module.ShoppingCartModule),canActivate:[AuthGuard]},
     {path:"dashboard",loadChildren: ()=>import("./admin/components/shopping-cart/shopping-cart.module").then(module =>module.ShoppingCartModule),canActivate:[AuthGuard]},
     ],canActivate:[AuthGuard]
